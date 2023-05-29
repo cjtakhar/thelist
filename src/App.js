@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/the-list" element={<Dash />} />
+          <Route path="/thelist" element={<Dash />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Confetti from 'react-dom-confetti';
 import './styles/list.css';
 
 const List = () => {
     const [checkedItems, setCheckedItems] = useState([]);
+    const [isConfettiActive, setConfettiActive] = useState(false);
 
     const handleToggle = (item) => {
         const updatedCheckedItems = [...checkedItems];
@@ -13,6 +15,25 @@ const List = () => {
             updatedCheckedItems.push(item);
         }
         setCheckedItems(updatedCheckedItems);
+        setConfettiActive(true); // Activate confetti
+
+        // Deactivate confetti after 3 seconds
+        setTimeout(() => {
+            setConfettiActive(false);
+        }, 3000);
+    };
+
+    const confettiConfig = {
+        angle: 90,
+        spread: 360,
+        startVelocity: 40,
+        elementCount: 100,
+        dragFriction: 0.12,
+        duration: 3000,
+        stagger: 3,
+        width: '10px',
+        height: '10px',
+        colors: ['#007bff', '#ff0000', '#00ff00', '#ffff00'],
     };
 
     return (
@@ -38,7 +59,7 @@ const List = () => {
                         />
                         <span className="checkmark"></span>
                     </label>
-                    <span className="item-label">Whale Tour French Polynesia</span>
+                    <span className="item-label">Swim with Whales</span>
                 </li>
                 <li>
                     <label className="checkbox-container">
@@ -73,7 +94,19 @@ const List = () => {
                     </label>
                     <span className="item-label">Seychelles</span>
                 </li>
+                <li>
+                    <label className="checkbox-container">
+                        <input
+                            type="checkbox"
+                            checked={checkedItems.includes('Write a feature film')}
+                            onChange={() => handleToggle('Write a feature film')}
+                        />
+                        <span className="checkmark"></span>
+                    </label>
+                    <span className="item-label">Write a feature film</span>
+                </li>
             </ul>
+            <Confetti active={isConfettiActive} config={confettiConfig} />
         </div>
     );
 };

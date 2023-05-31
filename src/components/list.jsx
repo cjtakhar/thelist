@@ -37,7 +37,7 @@ const List = () => {
     };
 
     return (
-        <div>
+        <div className="list-container">
             <ul>
                 <li>
                     <label className="checkbox-container">
